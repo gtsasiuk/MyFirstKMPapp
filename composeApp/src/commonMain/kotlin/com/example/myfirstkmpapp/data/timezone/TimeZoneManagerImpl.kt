@@ -39,8 +39,8 @@ class TimeZoneManagerImpl : TimeZoneManager {
         val currentOtherDateTime: LocalDateTime = currentUTCInstant.toLocalDateTime(otherTimeZone)
         val otherDateTimeWithHour = LocalDateTime(
             currentOtherDateTime.year,
-            currentOtherDateTime.monthNumber,
-            currentOtherDateTime.dayOfMonth,
+            currentOtherDateTime.month,
+            currentOtherDateTime.day,
             hour,
             0,
             0,
@@ -83,7 +83,7 @@ class TimeZoneManagerImpl : TimeZoneManager {
         val day = date.dayOfWeek.name.lowercase().replaceFirstChar { it.uppercase() }
         val month = date.month.name.lowercase().replaceFirstChar { it.uppercase() }
 
-        return "$day, $month ${date.dayOfMonth}"
+        return "$day, $month ${date.day}"
     }
 
     override fun getTimeDifference(otherTimeZoneId: String): Double {

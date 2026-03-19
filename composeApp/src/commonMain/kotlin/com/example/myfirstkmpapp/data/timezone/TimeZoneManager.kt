@@ -7,6 +7,6 @@ interface TimeZoneManager {
     fun getTimeForZone(timeZoneId: String): String
     fun getDateForZone(timeZoneId: String): String
     fun getTimeDifference(otherTimeZoneId: String): Double
-    fun findSuitableHours(timeFrom: Int, timeTo: Int, timeZones: List<String>): List<Int>
+    fun findSuitableHours(startHour: Int, endHour: Int, timeZones: List<String>): List<Int>
     fun isDayTime(timeZoneId: String): Boolean
 }

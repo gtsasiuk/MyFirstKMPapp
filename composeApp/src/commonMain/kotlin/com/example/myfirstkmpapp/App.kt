@@ -43,9 +43,11 @@ fun App() {
             }
             AnimatedVisibility(showContent) {
                 val greeting = remember { Greeting().greet() }
-                val currentTime = remember {
-                    TimeZoneManagerImpl().getTimeForZone("Europe/Kyiv")
-                }
+                val manager = remember { TimeZoneManagerImpl() }
+
+                val currentTime = manager.getTimeForZone("UTC+2")
+                val diffLondonKyiv = manager.getTimeDifference("UTC")
+                val isDayInKyiv = manager.isDayTime("UTC+2")
                 Column(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally,
@@ -58,7 +60,18 @@ fun App() {
                             fontSize = 20.sp
                         )
                     )
-
+                    Text(
+                        text = "Difference in time between London and Kyiv: $diffLondonKyiv hours",
+                        style = TextStyle(
+                            fontSize = 20.sp
+                        )
+                    )
+                    Text(
+                        text = "Is this a day time in Kyiv? $isDayInKyiv",
+                        style = TextStyle(
+                            fontSize = 20.sp
+                        )
+                    )
                 }
             }
         }
