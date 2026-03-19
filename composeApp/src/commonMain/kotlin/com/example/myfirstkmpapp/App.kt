@@ -13,12 +13,15 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.sp
 import org.jetbrains.compose.resources.painterResource
 
 import myfirstkmpapp.composeapp.generated.resources.Res
 import myfirstkmpapp.composeapp.generated.resources.compose_multiplatform
 import co.touchlab.kermit.Logger
+import com.example.myfirstkmpapp.data.timezone.TimeZoneManagerImpl
 
 @Composable
 @Preview
@@ -40,12 +43,22 @@ fun App() {
             }
             AnimatedVisibility(showContent) {
                 val greeting = remember { Greeting().greet() }
+                val currentTime = remember {
+                    TimeZoneManagerImpl().getTimeForZone("Europe/Kyiv")
+                }
                 Column(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
                     Image(painterResource(Res.drawable.compose_multiplatform), null)
                     Text("Compose: $greeting")
+                    Text(
+                        text = "Current Time in Ukraine: $currentTime",
+                        style = TextStyle(
+                            fontSize = 20.sp
+                        )
+                    )
+
                 }
             }
         }
