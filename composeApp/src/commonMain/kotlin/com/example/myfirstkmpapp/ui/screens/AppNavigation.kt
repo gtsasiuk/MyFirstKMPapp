@@ -10,10 +10,14 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarDuration
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -21,7 +25,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.myfirstkmpapp.ui.screens.buttons.ButtonsScreen
+import com.example.myfirstkmpapp.ui.screens.checkboxes.CheckboxesScreen
 import com.example.myfirstkmpapp.ui.screens.main.MainScreen
+import kotlinx.coroutines.launch
 import myfirstkmpapp.composeapp.generated.resources.Res
 import myfirstkmpapp.composeapp.generated.resources.back
 import myfirstkmpapp.composeapp.generated.resources.buttons
@@ -64,6 +70,8 @@ fun AppNavigation() {
     val currentScreen = AppScreen.valueOf(
         backStackEntry?.destination?.route ?: AppScreen.Main.name
     )
+    val scope = rememberCoroutineScope()
+    val snackbarHostState = remember { SnackbarHostState() }
 
     Scaffold(
         topBar = {
@@ -82,11 +90,26 @@ fun AppNavigation() {
                 .padding(innerPadding)
         ) {
             composable(route = AppScreen.Main.name) {
-                MainScreen {
-                    navController.navigate(AppScreen.Buttons.name)
-                } }
+                MainScreen(
+                    onButtonsClicked = { navController.navigate(AppScreen.Buttons.name) },
+                    onCheckboxesClicked = { navController.navigate(AppScreen.Checkboxes.name) },
+                )
+            }
             composable(route = AppScreen.Buttons.name) {
-                ButtonsScreen()
+                ButtonsScreen(
+                    onFilledButtonClicked = { text ->
+                        scope.launch {
+                            snackbarHostState
+                                .showSnackbar(
+                                    message = text,
+                                    duration = SnackbarDuration.Short
+                                )
+                        }
+                    }
+                )
+            }
+            composable(route = AppScreen.Checkboxes.name) {
+                CheckboxesScreen()
             }
         }
     }
