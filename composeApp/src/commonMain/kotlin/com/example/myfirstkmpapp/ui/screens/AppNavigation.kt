@@ -30,6 +30,7 @@ import com.example.myfirstkmpapp.ui.screens.chips.ChipScreen
 import com.example.myfirstkmpapp.ui.screens.datepicker.DatePickerScreen
 import com.example.myfirstkmpapp.ui.screens.main.MainScreen
 import com.example.myfirstkmpapp.ui.screens.switches.SwitchScreen
+import com.example.myfirstkmpapp.ui.screens.timepicker.TimePickerScreen
 import kotlinx.coroutines.launch
 import myfirstkmpapp.composeapp.generated.resources.Res
 import myfirstkmpapp.composeapp.generated.resources.back
@@ -39,6 +40,7 @@ import myfirstkmpapp.composeapp.generated.resources.chips
 import myfirstkmpapp.composeapp.generated.resources.datepicker
 import myfirstkmpapp.composeapp.generated.resources.main
 import myfirstkmpapp.composeapp.generated.resources.switches
+import myfirstkmpapp.composeapp.generated.resources.timepicker
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -48,7 +50,8 @@ enum class AppScreen(val title: StringResource) {
     Checkboxes(title = Res.string.checkboxes),
     Chips(title = Res.string.chips),
     Datepicker(title = Res.string.datepicker),
-    Switches(title = Res.string.switches)
+    Switches(title = Res.string.switches),
+    Timepicker(title = Res.string.timepicker),
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -107,6 +110,7 @@ fun AppNavigation() {
                     onChipsClicked = { navController.navigate(AppScreen.Chips.name) },
                     onDatePickerClicked = { navController.navigate(AppScreen.Datepicker.name) },
                     onSwitchesClicked = { navController.navigate(AppScreen.Switches.name) },
+                    onTimePickerClicked = { navController.navigate(AppScreen.Timepicker.name) }
                 )
             }
             composable(route = AppScreen.Buttons.name) {
@@ -133,6 +137,9 @@ fun AppNavigation() {
             }
             composable(route = AppScreen.Switches.name) {
                 SwitchScreen()
+            }
+            composable(route = AppScreen.Timepicker.name) {
+                TimePickerScreen()
             }
         }
     }
