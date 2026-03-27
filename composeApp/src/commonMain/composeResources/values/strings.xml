@@ -4,6 +4,7 @@
     <string name="checkboxes">Checkboxes</string>
     <string name="chips">Chips</string>
     <string name="datepicker">Datepicker dialog</string>
+    <string name="dialog">Dialog</string>
     <string name="switches">Switches</string>
     <string name="timepicker">Timepicker dialog</string>
     <string name="back">Back</string>

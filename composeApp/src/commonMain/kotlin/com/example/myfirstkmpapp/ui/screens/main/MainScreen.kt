@@ -15,6 +15,7 @@ import myfirstkmpapp.composeapp.generated.resources.buttons
 import myfirstkmpapp.composeapp.generated.resources.checkboxes
 import myfirstkmpapp.composeapp.generated.resources.chips
 import myfirstkmpapp.composeapp.generated.resources.datepicker
+import myfirstkmpapp.composeapp.generated.resources.dialog
 import myfirstkmpapp.composeapp.generated.resources.switches
 import myfirstkmpapp.composeapp.generated.resources.timepicker
 import org.jetbrains.compose.resources.stringResource
@@ -25,6 +26,7 @@ fun MainScreen (
     onCheckboxesClicked: () -> Unit,
     onChipsClicked: () -> Unit,
     onDatePickerClicked: () -> Unit,
+    onDialogClicked: () -> Unit,
     onSwitchesClicked: () -> Unit,
     onTimePickerClicked: () -> Unit,
 ) {
@@ -72,6 +74,15 @@ fun MainScreen (
         Button(
             modifier = Modifier.fillMaxWidth(),
             onClick = {
+                onDialogClicked()
+            }
+        ) {
+            Text(stringResource(Res.string.dialog))
+        }
+
+        Button(
+            modifier = Modifier.fillMaxWidth(),
+            onClick = {
                 onSwitchesClicked()
             }
         ) {
@@ -95,6 +106,6 @@ fun MainScreen (
 private fun MainScreenPreview() {
     MainScreen(
         {}, {}, {},
-        {}, {}
+        {}, {}, {}
     ) {}
 }
