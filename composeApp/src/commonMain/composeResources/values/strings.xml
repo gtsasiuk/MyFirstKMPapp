@@ -2,5 +2,6 @@
     <string name="main">Main</string>
     <string name="buttons">Buttons</string>
     <string name="checkboxes">Checkboxes</string>
+    <string name="chips">Chips</string>
     <string name="back">Back</string>
 </resources>

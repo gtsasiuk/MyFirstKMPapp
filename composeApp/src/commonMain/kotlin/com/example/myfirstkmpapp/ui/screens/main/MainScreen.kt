@@ -13,12 +13,14 @@ import androidx.compose.ui.unit.dp
 import myfirstkmpapp.composeapp.generated.resources.Res
 import myfirstkmpapp.composeapp.generated.resources.buttons
 import myfirstkmpapp.composeapp.generated.resources.checkboxes
+import myfirstkmpapp.composeapp.generated.resources.chips
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun MainScreen (
     onButtonsClicked: () -> Unit,
     onCheckboxesClicked: () -> Unit,
+    onChipsClicked: () -> Unit,
 ) {
     Column (
         modifier = Modifier
@@ -42,6 +44,15 @@ fun MainScreen (
         ) {
             Text(stringResource(Res.string.checkboxes))
         }
+
+        Button(
+            modifier = Modifier.fillMaxWidth(),
+            onClick = {
+                onChipsClicked()
+            }
+        ) {
+            Text(stringResource(Res.string.chips))
+        }
     }
 }
 
@@ -50,6 +61,6 @@ fun MainScreen (
 @Composable
 private fun MainScreenPreview() {
     MainScreen(
-        {},
+        {}, {}
     ) {}
 }

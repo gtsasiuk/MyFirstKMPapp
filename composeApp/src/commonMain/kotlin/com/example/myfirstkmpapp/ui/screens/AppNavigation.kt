@@ -26,18 +26,23 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.myfirstkmpapp.ui.screens.buttons.ButtonsScreen
 import com.example.myfirstkmpapp.ui.screens.checkboxes.CheckboxesScreen
+import com.example.myfirstkmpapp.ui.screens.chips.ChipScreen
 import com.example.myfirstkmpapp.ui.screens.main.MainScreen
 import kotlinx.coroutines.launch
 import myfirstkmpapp.composeapp.generated.resources.Res
 import myfirstkmpapp.composeapp.generated.resources.back
 import myfirstkmpapp.composeapp.generated.resources.buttons
 import myfirstkmpapp.composeapp.generated.resources.checkboxes
+import myfirstkmpapp.composeapp.generated.resources.chips
 import myfirstkmpapp.composeapp.generated.resources.main
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 
 enum class AppScreen(val title: StringResource) {
-    Main(title = Res.string.main), Buttons(title = Res.string.buttons), Checkboxes(title = Res.string.checkboxes),
+    Main(title = Res.string.main),
+    Buttons(title = Res.string.buttons),
+    Checkboxes(title = Res.string.checkboxes),
+    Chips(title = Res.string.chips),
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -93,6 +98,7 @@ fun AppNavigation() {
                 MainScreen(
                     onButtonsClicked = { navController.navigate(AppScreen.Buttons.name) },
                     onCheckboxesClicked = { navController.navigate(AppScreen.Checkboxes.name) },
+                    onChipsClicked = { navController.navigate(AppScreen.Chips.name) },
                 )
             }
             composable(route = AppScreen.Buttons.name) {
@@ -110,6 +116,9 @@ fun AppNavigation() {
             }
             composable(route = AppScreen.Checkboxes.name) {
                 CheckboxesScreen()
+            }
+            composable(route = AppScreen.Chips.name) {
+                ChipScreen()
             }
         }
     }
