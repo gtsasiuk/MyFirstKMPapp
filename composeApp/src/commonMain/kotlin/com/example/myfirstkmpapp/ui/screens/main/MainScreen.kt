@@ -17,6 +17,7 @@ import myfirstkmpapp.composeapp.generated.resources.chips
 import myfirstkmpapp.composeapp.generated.resources.datepicker
 import myfirstkmpapp.composeapp.generated.resources.dialog
 import myfirstkmpapp.composeapp.generated.resources.divider
+import myfirstkmpapp.composeapp.generated.resources.progressbar
 import myfirstkmpapp.composeapp.generated.resources.switches
 import myfirstkmpapp.composeapp.generated.resources.timepicker
 import org.jetbrains.compose.resources.stringResource
@@ -29,6 +30,7 @@ fun MainScreen (
     onDatePickerClicked: () -> Unit,
     onDialogClicked: () -> Unit,
     onDividerClicked: () -> Unit,
+    onProgressBarClicked: () -> Unit,
     onSwitchesClicked: () -> Unit,
     onTimePickerClicked: () -> Unit,
 ) {
@@ -94,6 +96,15 @@ fun MainScreen (
         Button(
             modifier = Modifier.fillMaxWidth(),
             onClick = {
+                onProgressBarClicked()
+            }
+        ) {
+            Text(stringResource(Res.string.progressbar))
+        }
+
+        Button(
+            modifier = Modifier.fillMaxWidth(),
+            onClick = {
                 onSwitchesClicked()
             }
         ) {
@@ -118,6 +129,6 @@ private fun MainScreenPreview() {
     MainScreen(
         {}, {}, {},
         {}, {}, {},
-        {}
+        {}, {}
     ) {}
 }
