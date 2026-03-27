@@ -7,6 +7,7 @@
     <string name="dialog">Dialog</string>
     <string name="divider">Divider</string>
     <string name="progressbar">Progress bar</string>
+    <string name="radiobutton">Radio button</string>
     <string name="switches">Switches</string>
     <string name="timepicker">Timepicker dialog</string>
     <string name="back">Back</string>

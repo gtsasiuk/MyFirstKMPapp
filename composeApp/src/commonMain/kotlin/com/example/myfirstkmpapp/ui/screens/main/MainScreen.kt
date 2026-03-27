@@ -18,6 +18,7 @@ import myfirstkmpapp.composeapp.generated.resources.datepicker
 import myfirstkmpapp.composeapp.generated.resources.dialog
 import myfirstkmpapp.composeapp.generated.resources.divider
 import myfirstkmpapp.composeapp.generated.resources.progressbar
+import myfirstkmpapp.composeapp.generated.resources.radiobutton
 import myfirstkmpapp.composeapp.generated.resources.switches
 import myfirstkmpapp.composeapp.generated.resources.timepicker
 import org.jetbrains.compose.resources.stringResource
@@ -31,6 +32,7 @@ fun MainScreen (
     onDialogClicked: () -> Unit,
     onDividerClicked: () -> Unit,
     onProgressBarClicked: () -> Unit,
+    onRadioButtonClicked: () -> Unit,
     onSwitchesClicked: () -> Unit,
     onTimePickerClicked: () -> Unit,
 ) {
@@ -105,6 +107,15 @@ fun MainScreen (
         Button(
             modifier = Modifier.fillMaxWidth(),
             onClick = {
+                onRadioButtonClicked()
+            }
+        ) {
+            Text(stringResource(Res.string.radiobutton))
+        }
+
+        Button(
+            modifier = Modifier.fillMaxWidth(),
+            onClick = {
                 onSwitchesClicked()
             }
         ) {
@@ -129,6 +140,6 @@ private fun MainScreenPreview() {
     MainScreen(
         {}, {}, {},
         {}, {}, {},
-        {}, {}
+        {}, {}, {}
     ) {}
 }

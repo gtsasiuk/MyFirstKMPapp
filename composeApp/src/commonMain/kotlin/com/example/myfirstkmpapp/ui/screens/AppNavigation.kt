@@ -33,6 +33,7 @@ import com.example.myfirstkmpapp.ui.screens.dialog.DialogScreen
 import com.example.myfirstkmpapp.ui.screens.divider.DividerScreen
 import com.example.myfirstkmpapp.ui.screens.main.MainScreen
 import com.example.myfirstkmpapp.ui.screens.progressbar.ProgressBarScreen
+import com.example.myfirstkmpapp.ui.screens.radiobutton.RadioButtonScreen
 import com.example.myfirstkmpapp.ui.screens.switches.SwitchScreen
 import com.example.myfirstkmpapp.ui.screens.timepicker.TimePickerScreen
 import kotlinx.coroutines.launch
@@ -46,6 +47,7 @@ import myfirstkmpapp.composeapp.generated.resources.dialog
 import myfirstkmpapp.composeapp.generated.resources.divider
 import myfirstkmpapp.composeapp.generated.resources.main
 import myfirstkmpapp.composeapp.generated.resources.progressbar
+import myfirstkmpapp.composeapp.generated.resources.radiobutton
 import myfirstkmpapp.composeapp.generated.resources.switches
 import myfirstkmpapp.composeapp.generated.resources.timepicker
 import org.jetbrains.compose.resources.StringResource
@@ -60,6 +62,7 @@ enum class AppScreen(val title: StringResource) {
     Dialog(title = Res.string.dialog),
     Divider(title = Res.string.divider),
     ProgressBar(title = Res.string.progressbar),
+    RadioButton(title = Res.string.radiobutton),
     Switches(title = Res.string.switches),
     Timepicker(title = Res.string.timepicker),
 }
@@ -122,6 +125,7 @@ fun AppNavigation() {
                     onDialogClicked = { navController.navigate(AppScreen.Dialog.name) },
                     onDividerClicked = { navController.navigate(AppScreen.Divider.name) },
                     onProgressBarClicked = { navController.navigate(AppScreen.ProgressBar.name) },
+                    onRadioButtonClicked = { navController.navigate(AppScreen.RadioButton.name) },
                     onSwitchesClicked = { navController.navigate(AppScreen.Switches.name) },
                     onTimePickerClicked = { navController.navigate(AppScreen.Timepicker.name) }
                 )
@@ -156,6 +160,9 @@ fun AppNavigation() {
             }
             composable(route = AppScreen.ProgressBar.name) {
                 ProgressBarScreen()
+            }
+            composable(route = AppScreen.RadioButton.name) {
+                RadioButtonScreen()
             }
             composable(route = AppScreen.Switches.name) {
                 SwitchScreen()
