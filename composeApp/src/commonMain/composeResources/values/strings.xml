@@ -3,6 +3,7 @@
     <string name="buttons">Buttons</string>
     <string name="checkboxes">Checkboxes</string>
     <string name="chips">Chips</string>
+    <string name="datepicker">Datepicker dialog</string>
     <string name="switches">Switches</string>
     <string name="back">Back</string>
 </resources>

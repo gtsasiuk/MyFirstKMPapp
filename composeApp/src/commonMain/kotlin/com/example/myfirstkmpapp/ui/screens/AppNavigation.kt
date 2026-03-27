@@ -27,6 +27,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.myfirstkmpapp.ui.screens.buttons.ButtonsScreen
 import com.example.myfirstkmpapp.ui.screens.checkboxes.CheckboxesScreen
 import com.example.myfirstkmpapp.ui.screens.chips.ChipScreen
+import com.example.myfirstkmpapp.ui.screens.datepicker.DatePickerScreen
 import com.example.myfirstkmpapp.ui.screens.main.MainScreen
 import com.example.myfirstkmpapp.ui.screens.switches.SwitchScreen
 import kotlinx.coroutines.launch
@@ -35,6 +36,7 @@ import myfirstkmpapp.composeapp.generated.resources.back
 import myfirstkmpapp.composeapp.generated.resources.buttons
 import myfirstkmpapp.composeapp.generated.resources.checkboxes
 import myfirstkmpapp.composeapp.generated.resources.chips
+import myfirstkmpapp.composeapp.generated.resources.datepicker
 import myfirstkmpapp.composeapp.generated.resources.main
 import myfirstkmpapp.composeapp.generated.resources.switches
 import org.jetbrains.compose.resources.StringResource
@@ -45,6 +47,7 @@ enum class AppScreen(val title: StringResource) {
     Buttons(title = Res.string.buttons),
     Checkboxes(title = Res.string.checkboxes),
     Chips(title = Res.string.chips),
+    Datepicker(title = Res.string.datepicker),
     Switches(title = Res.string.switches)
 }
 
@@ -102,6 +105,7 @@ fun AppNavigation() {
                     onButtonsClicked = { navController.navigate(AppScreen.Buttons.name) },
                     onCheckboxesClicked = { navController.navigate(AppScreen.Checkboxes.name) },
                     onChipsClicked = { navController.navigate(AppScreen.Chips.name) },
+                    onDatePickerClicked = { navController.navigate(AppScreen.Datepicker.name) },
                     onSwitchesClicked = { navController.navigate(AppScreen.Switches.name) },
                 )
             }
@@ -123,6 +127,9 @@ fun AppNavigation() {
             }
             composable(route = AppScreen.Chips.name) {
                 ChipScreen()
+            }
+            composable(route = AppScreen.Datepicker.name) {
+                DatePickerScreen()
             }
             composable(route = AppScreen.Switches.name) {
                 SwitchScreen()

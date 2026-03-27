@@ -14,6 +14,7 @@ import myfirstkmpapp.composeapp.generated.resources.Res
 import myfirstkmpapp.composeapp.generated.resources.buttons
 import myfirstkmpapp.composeapp.generated.resources.checkboxes
 import myfirstkmpapp.composeapp.generated.resources.chips
+import myfirstkmpapp.composeapp.generated.resources.datepicker
 import myfirstkmpapp.composeapp.generated.resources.switches
 import org.jetbrains.compose.resources.stringResource
 
@@ -22,6 +23,7 @@ fun MainScreen (
     onButtonsClicked: () -> Unit,
     onCheckboxesClicked: () -> Unit,
     onChipsClicked: () -> Unit,
+    onDatePickerClicked: () -> Unit,
     onSwitchesClicked: () -> Unit,
 ) {
     Column (
@@ -59,6 +61,15 @@ fun MainScreen (
         Button(
             modifier = Modifier.fillMaxWidth(),
             onClick = {
+                onDatePickerClicked()
+            }
+        ) {
+            Text(stringResource(Res.string.datepicker))
+        }
+
+        Button(
+            modifier = Modifier.fillMaxWidth(),
+            onClick = {
                 onSwitchesClicked()
             }
         ) {
@@ -72,6 +83,6 @@ fun MainScreen (
 @Composable
 private fun MainScreenPreview() {
     MainScreen(
-        {}, {}, {}
+        {}, {}, {}, {}
     ) {}
 }
