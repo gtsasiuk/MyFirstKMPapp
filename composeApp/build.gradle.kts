@@ -57,6 +57,12 @@ kotlin {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutinesSwing)
         }
+        wasmJsMain.dependencies {
+            implementation(npm("@js-joda/timezone", "2.25.1"))
+        }
+        jsMain.dependencies {
+            implementation(npm("@js-joda/timezone", "2.25.1"))
+        }
     }
 }
 

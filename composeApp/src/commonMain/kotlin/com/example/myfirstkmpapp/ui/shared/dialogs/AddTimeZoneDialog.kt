@@ -25,50 +25,74 @@ fun AddTimeZoneDialog(
         it.startsWith("Europe") || it.startsWith("Asia")
     }
 
-    AlertDialog(
-        onDismissRequest = onDismiss,
-        title = { Text("Select Time Zones") },
-        text = {
-            LazyColumn(
-                modifier = Modifier.height(300.dp)
+    AddTimeZoneDialogWrapper(onDismiss = onDismiss) {
+
+        Surface(
+            shape = MaterialTheme.shapes.medium,
+            tonalElevation = 8.dp,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp)
             ) {
-                items(filteredZones) { zone ->
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clickable {
-                                if (selectedZones.contains(zone)) {
-                                    selectedZones.remove(zone)
-                                } else {
-                                    selectedZones.add(zone)
+
+                Text(
+                    "Select Time Zones",
+                    style = MaterialTheme.typography.titleLarge
+                )
+
+                Spacer(Modifier.height(12.dp))
+
+                LazyColumn(
+                    modifier = Modifier.weight(1f)
+                ) {
+                    items(filteredZones) { zone ->
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clickable {
+                                    if (selectedZones.contains(zone))
+                                        selectedZones.remove(zone)
+                                    else
+                                        selectedZones.add(zone)
                                 }
-                            }
-                            .padding(8.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Checkbox(
-                            checked = selectedZones.contains(zone),
-                            onCheckedChange = null
-                        )
+                                .padding(8.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Checkbox(
+                                checked = selectedZones.contains(zone),
+                                onCheckedChange = null
+                            )
 
-                        Spacer(Modifier.width(8.dp))
+                            Spacer(Modifier.width(8.dp))
 
-                        Text(zone.substringAfter("/"))
+                            Text(zone.substringAfter("/"))
+                        }
+                    }
+                }
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.End
+                ) {
+                    Button(onClick = onDismiss) {
+                        Text("Cancel")
+                    }
+
+                    Spacer(Modifier.width(8.dp))
+
+                    Button(onClick = { onAdd(selectedZones) }) {
+                        Text("Add")
                     }
                 }
             }
-        },
-        confirmButton = {
-            Button(onClick = {
-                onAdd(selectedZones)
-            }) {
-                Text("Add")
-            }
-        },
-        dismissButton = {
-            Button(onClick = onDismiss) {
-                Text("Cancel")
-            }
         }
-    )
+    }
 }
+
+@Composable
+expect fun AddTimeZoneDialogWrapper(onDismiss: () -> Unit, content: @Composable () -> Unit)

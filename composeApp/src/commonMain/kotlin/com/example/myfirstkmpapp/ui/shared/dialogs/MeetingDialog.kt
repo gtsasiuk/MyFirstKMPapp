@@ -12,20 +12,28 @@ fun MeetingDialog(
     hours: List<Int>,
     onDismiss: () -> Unit
 ) {
-    AlertDialog(
-        onDismissRequest = onDismiss,
-        title = {
-            Text(
-                text = "Available Meeting Time",
-                modifier = Modifier.fillMaxWidth(),
-                textAlign = androidx.compose.ui.text.style.TextAlign.Center
-            )
-        },
-        text = {
+    MeetingDialogWrapper(onDismiss = onDismiss) {
+        Surface(
+            shape = MaterialTheme.shapes.medium,
+            tonalElevation = 8.dp,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+        ) {
             Column(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
+
+                Text(
+                    "Available Meeting Time",
+                    style = MaterialTheme.typography.titleLarge
+                )
+
+                Spacer(Modifier.height(16.dp))
+
                 if (hours.isEmpty()) {
                     Text("No suitable time found")
                 } else {
@@ -33,12 +41,16 @@ fun MeetingDialog(
                         Text("$it:00")
                     }
                 }
-            }
-        },
-        confirmButton = {
-            Button(onClick = onDismiss) {
-                Text("OK")
+
+                Spacer(Modifier.height(24.dp))
+
+                Button(onClick = onDismiss) {
+                    Text("OK")
+                }
             }
         }
-    )
+    }
 }
+
+@Composable
+expect fun MeetingDialogWrapper(onDismiss: () -> Unit, content: @Composable () -> Unit)
